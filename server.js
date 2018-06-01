@@ -21,7 +21,10 @@ app.use(bodyParser.urlencoded({
 app.use(express.static('public'));
 
 //Mongoose - Configure and connect to the database 
-mongoose.connect('mongodb://localhost/scrapperDB');
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
+mongoose.connect(MONGODB_URI);
+
 var db = mongoose.connection;
 
 //Mongoose - show errors
